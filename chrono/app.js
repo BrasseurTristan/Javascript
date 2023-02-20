@@ -24,6 +24,7 @@ function decrements() {
 function stopTimer() {
     clearInterval(increment);
     query= displayCount.innerText = 'FIN';
+    increment=null;
 }
 
 function toastGeneration({
