@@ -15,7 +15,7 @@ div:first-child{
     text-align: center;
     border: 1px solid ;
 }
-div:last-child {
+div:nth-child(2) {
     width: 30%;
     margin:15px auto;
     text-align: center;
@@ -27,12 +27,35 @@ span{
 button {
     width: 40%;
 }
-
-.toaster{
-    position: absolute;
+p{
+    width: 100%;
+}
+#toaster{
+    position: fixed;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items:flex-end;
-    width: 250px;
-    height: 100px;
+    width: 200px;
+    right: 5px;
+    bottom: 5px;
+    border:0;
+}
+.toast{
+    font-size: larger;
+    font-weight: 900;
+    padding: 20px 150px;
+    margin: 2px;
+    border-radius: 10px;
+    animation: showToast 3000ms ease-in-out forwards;
+}
+
+@keyframes showToast {
+    0%,100% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+    10%,90% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
 }
