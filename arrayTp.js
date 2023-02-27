@@ -130,9 +130,9 @@ const dw2 = [
 
 // 1. Combien y a t il d'élève dans la classe dw1 puis dw2 et dans toutes les classes ?
 
-// const classroom1 = dw1.length;
-// const classroom2 = dw2.length;
-// const totalStudent = classroom1 + classroom2
+const classroom1 = dw1.length;
+const classroom2 = dw2.length;
+const totalStudent = classroom1 + classroom2
 // console.log(`Il y a ${classroom1} élèves dans la première classe.`)
 // console.log(`Il y a ${classroom2} élèves dans la première classe.`)
 // console.log(`Il y a ${totalStudent} élèves au total. `)
@@ -168,7 +168,10 @@ console.log(newArray);
 // for (i=0;newArray.length>i;i++) {
 //   console.log(` ${newArray[i].firstName} à eu ${((newArray[i].js.mark*newArray[i].js.rate)+(newArray[i].english.mark*newArray[i].english.rate))/(newArray[i].js.rate+newArray[i].english.rate)}/20 de moyenne générale.` );
 // }
-
+const average = dw1.map((test)=>{
+   return((test.js.mark*test.js.rate)+(test.english.mark*test.english.rate))/(test.js.rate+test.english.rate)
+});
+console.log(average);
 
 // 6. Moyenne de la classe dw1 en js ?
 let overrallAveragedw1 = 0;
@@ -176,7 +179,12 @@ for(i=0;dw1.length>i;i++) {
   overrallAveragedw1 += ((dw1[i].js.mark*dw1[i].js.rate)+(dw1[i].english.mark*dw1[i].english.rate))/(dw1[i].js.rate+dw1[i].english.rate);
 }
 let dw1Average = overrallAveragedw1 / i;
-console.log(`La moyenne de la première classe est de ${dw1Average.toFixed(2)}/ 20`);
+
+// const moyenneJsOfDw1 = dw1.reduce((student, aggregate)=> {
+//   return aggregate = student.js.mark;
+// },0)/dw1.length
+// ;
+// console.log(`La moyenne de la première classe est de ${dw1Average.toFixed(2)}/ 20`);
 
 // 7. Moyenne des deux classes en js ?
 
@@ -185,21 +193,35 @@ for(i=0;dw2.length>i;i++) {
   overrallAveragedw2 += ((dw2[i].js.mark*dw2[i].js.rate)+(dw2[i].english.mark*dw2[i].english.rate))/(dw2[i].js.rate+dw2[i].english.rate);
 }
 let dw2Average = overrallAveragedw2 / i;
-console.log(`La moyenne de la seconde classe est de ${dw1Average.toFixed(2)}/ 20`);
+// console.log(`La moyenne de la seconde classe est de ${dw1Average.toFixed(2)}/ 20`);
 let globalAverage = (dw1Average+dw2Average)/2;
-console.log(`La moyenne des deux classes est de ${globalAverage.toFixed(2)} / 20`)
+// console.log(`La moyenne des deux classes est de ${globalAverage.toFixed(2)} / 20`);
 
 
 // 8. Meilleure moyenne de la classe en js ?
 
+const bestMoyenneJsOfDw1 = dw1.sort((a,b) => {
+  return a.js.mark>b.js.mark ? 1 : -1
+});                        //vrai   faux
+// console.log(bestMoyenneJsOfDw1[0].firstname, bestMoyenneJsOfDw1[0].js.mark);
 
+// 9. Meilleur élève des deux classes en Js
 
-// 9. Meilleur élève des deux classes
+const allClass = dw1.concat(dw2).sort((a,b) => {
+  return a.js.mark>b.js.mark ? 1 : -1
+});
 
-
-
+// console.log(allClass[0].firstname, allClass[0].js.mark);
 // 10. Meilleure fille des deux classes en anglais
 
+console.log(dw1.concat(dw2).filter(student => student.gender === "female").sort((a,b) =>
+ a.js.mark>b.js.mark ? 1 : -1
+)[0]);
+
+console.log(dw2.concat(dw1)
+.sort((a,b) => a.js.mark>b.js.mark ? 1 : -1)
+.find(student => student.gender === "female")
+);
 
 
 // 11. Meilleur garcon en moyenne générale

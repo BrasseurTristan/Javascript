@@ -1,0 +1,21 @@
+.square {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 250%;
+    background-color: red;
+    transform: translate(-45%,-40%);
+}
+
+.zombie {
+    position: absolute;
+    transition:transform 0.1s;
+}
+
+.left {
+    transform: scaleX(1);
+}
+
+.right{
+    transform: scaleX(-1);
+}

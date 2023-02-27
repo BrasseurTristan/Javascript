@@ -1,0 +1,114 @@
+@font-face {
+    font-family: IndieFlower;
+    src: url(./Indie_Flower/IndieFlower-Regular.ttf);
+} 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: IndieFlower;
+}
+
+
+body {
+    background-size:repeat;   
+    background-color: #fed420;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#todo {
+    width: 100%;
+    margin: 200px auto;
+    text-align: center;
+}
+
+h1{
+    margin: 10px;
+    color: yellow;
+    font-size: 96px;
+    text-shadow: -5px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+
+input {
+    /* background-color: white; */
+    border-radius: 5px;
+    border: 4px solid;
+    height: 40px;
+    width: 40%;
+    text-align: center;
+    font-size:large;
+    font-weight: bold;
+}
+
+#list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.barre {
+    color: grey;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+li {
+    width: 40%;
+    padding: 10px;
+    margin: 2px auto;
+    font-size:large;
+    font-weight: bold;
+    border: 4px solid black;
+    background-color: white;
+    list-style-type: none;
+    border-radius: 5px;
+    user-select: none;
+}
+#validation {
+    display: none;
+}
+
+#homer {
+    display: table;
+    position: fixed;
+    z-index: 9999;
+    height: 1px;
+    bottom:50%;
+}
+#right-eye,
+#left-eye {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: -1;
+    overflow: hidden;
+}
+#left-eye {
+    left: 10px;
+}
+#right-eye{
+    z-index: -2;
+    left:150px;
+}
+img{
+    position: absolute;
+}
+.eyes2,
+.eyes {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    left:0;
+    background-color: black;
+ 
+    /* transition: all 0.2s; */
+    
+}

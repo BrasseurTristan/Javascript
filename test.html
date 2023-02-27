@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ma todolist</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			margin: 0;
+			padding: 20px;
+			background-color: #d44a4a;
+			color: #fff;
+			font-size: 24px;
+			font-weight: normal;
+			text-align: center;
+		}
+		.container {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+		}
+		input[type="text"] {
+			width: 100%;
+			height: 40px;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			font-size: 16px;
+		}
+		input[type="text"]::placeholder {
+			color: #ccc;
+		}
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			display: flex;
+			align-items: center;
+			height: 40px;
+			padding: 0 10px;
+			border-radius: 5px;
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+			transition: background-color 0.2s;
+			font-size: 16px;
+			color: #333;
+			background-color: #fff;
+			margin-bottom: 10px;
+		}
+		li:hover {
+			background-color: #f2f2f2;
+		}
+		li.done {
+			color: #ccc;
+			background-color: #f2f2f2;
+			text-decoration: line-through;
+		}
+		.delete {
+			margin-left: auto;
+			font-size: 16px;
+			color: #d44a4a;
+			opacity: 0;
+			transition: opacity 0.2s;
+			cursor: pointer;
+		}
+		li:hover .delete {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<h1>Ma todolist</h1>
+	<div class="container">
+		<input type="text" id="new-task" placeholder="Ajouter une tâche">
+		<ul id="task-list"></ul>
+	</div>
+
+	<script>
+		// Récupération des éléments HTML
+		var taskInput = document.getElementById("new-task");
+		var taskList = document.getElementById("task-list");
+
+		// Fonction pour ajouter une tâche à la liste
+		function addTask() {
+			var taskText = taskInput.value.trim(); // Récupère le texte sans les espaces inutiles
+			if (taskText !== "") { // Vérifie que le texte n'est pas vide
+				var newTask = document.createElement("li"); // Crée un nouvel élément li
+				newTask.innerText = taskText;
+			}
+		}
