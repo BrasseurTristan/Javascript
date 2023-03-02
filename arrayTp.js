@@ -152,7 +152,7 @@ newArray.sort((a,b) => {
   return 0;
 });
 console.log(newArray);
-
+console.log("------------------");
 // 3. Prendre les 3 premiers élèves de la classe dw1
 
 // dw1Slice= dw1.slice(0,3);
@@ -168,11 +168,12 @@ console.log(newArray);
 // for (i=0;newArray.length>i;i++) {
 //   console.log(` ${newArray[i].firstName} à eu ${((newArray[i].js.mark*newArray[i].js.rate)+(newArray[i].english.mark*newArray[i].english.rate))/(newArray[i].js.rate+newArray[i].english.rate)}/20 de moyenne générale.` );
 // }
+console.log("Moyenne : ");
 const average = dw1.map((test)=>{
    return((test.js.mark*test.js.rate)+(test.english.mark*test.english.rate))/(test.js.rate+test.english.rate)
 });
 console.log(average);
-
+console.log("------------------");
 // 6. Moyenne de la classe dw1 en js ?
 let overrallAveragedw1 = 0;
 for(i=0;dw1.length>i;i++) {
@@ -203,15 +204,13 @@ let globalAverage = (dw1Average+dw2Average)/2;
 const bestMoyenneJsOfDw1 = dw1.sort((a,b) => {
   return a.js.mark>b.js.mark ? 1 : -1
 });                        //vrai   faux
-// console.log(bestMoyenneJsOfDw1[0].firstname, bestMoyenneJsOfDw1[0].js.mark);
 
 // 9. Meilleur élève des deux classes en Js
 
 const allClass = dw1.concat(dw2).sort((a,b) => {
   return a.js.mark>b.js.mark ? 1 : -1
 });
-
-// console.log(allClass[0].firstname, allClass[0].js.mark);
+console.log("-------------------------");
 // 10. Meilleure fille des deux classes en anglais
 
 console.log(dw1.concat(dw2).filter(student => student.gender === "female").sort((a,b) =>
@@ -223,30 +222,108 @@ console.log(dw2.concat(dw1)
 .find(student => student.gender === "female")
 );
 
-
+console.log("-----------------------------");
 // 11. Meilleur garcon en moyenne générale
 
-
-
+const maleAverage = dw1.concat(dw2).filter(student => student.gender === "male").sort((a,b) => ((a.js.mark*a.js.rate)+(a.english.mark*a.english.rate))/(a.js.rate+a.english.rate)> ((b.js.mark*b.js.rate)+(b.english.mark*b.english.rate))/(b.js.rate+b.english.rate)? -1 : 1)[0];
+console.log("Moyenne générale garçon : ");
+console.log(maleAverage);
+console.log("----------------------------");
 // 12. Qui a la note médiane en anglais parmi dw1 ?
+const arrayEnglishAverage = dw1.sort((a,b) => (a.english.mark*a.english.rate) > (b.english.mark*b.english.rate) ? -1 : 1);
+
+const medianEnglish = Math.floor(arrayEnglishAverage.length/2);
+console.log('Note médiane anglais dw1 : ');
+console.log(arrayEnglishAverage[medianEnglish]);
+console.log('----------------------------');
 
 
 
+// 12.a. Donner la position de Jean dans la classe
 
-// 12.a. Donner sa position dans la classe
-
-
+console.log('Position de Jean dans la classe : ');
+console.log(arrayEnglishAverage.findIndex(student => student.firstName ==="Jean")+1);
+console.log('----------------------------');
 
 // 13. Qui a la moyenne médiane générale dw1 + dw2 ?
+const arrayDw1Average = dw1.map(student =>{
+  const studentDw1JsMark = student.js.mark;
+  const studentDw1JsRate = student.js.rate;
+  const studentDw1EnglishMark = student.english.mark;
+  const studentDw1EnglishRate = student.english.rate;
+  const personnalAverage = ((studentDw1JsMark * studentDw1JsRate)+(studentDw1EnglishMark * studentDw1EnglishRate))/(studentDw1JsRate + studentDw1EnglishRate);
 
+  return {...student, personnalAverage};
+});
+const arrayDw2Average = dw2.map(student =>{
+  const studentDw2JsMark = student.js.mark;
+  const studentDw2JsRate = student.js.rate;
+  const studentDw2EnglishMark = student.english.mark;
+  const studentDw2EnglishRate = student.english.rate;
+  const personnalAverage = ((studentDw2JsMark * studentDw2JsRate)+(studentDw2EnglishMark * studentDw2EnglishRate))/(studentDw2JsRate + studentDw2EnglishRate);
 
+  return {...student, personnalAverage};
+});
 
+const arrayGlobalAverage = arrayDw1Average.concat(arrayDw2Average).sort((a,b) => a.personnalAverage > b.personnalAverage ? -1 : 1);
+
+const medianClassroom = Math.floor(arrayGlobalAverage.length/2);
+
+console.log('Moyenne médiane générale : ')
+console.log(arrayGlobalAverage[medianClassroom])
+console.log("-----------------------------");
 // 14. Moyenne générale des filles et moyenne générale des garcons ?
+const femaleGlobalArray= arrayGlobalAverage.filter(student => student.gender === "female").reduce((average,student) => {
+  return average+student.personnalAverage
+},0);
+console.log('Moyenne générale fille :');
+console.log(Math.floor(femaleGlobalArray/arrayGlobalAverage.filter(student => student.gender === "female").length));
+console.log("-----------------------------");
+const maleGlobalArray = arrayGlobalAverage.filter(student => student.gender === "male").reduce((average,student) => {
+  return average+student.personnalAverage
+},0);
+console.log('Moyenne générale garcons :');
+console.log(Math.floor(maleGlobalArray/arrayGlobalAverage.filter(student => student.gender === "male").length));
 
-
-
+console.log("-----------------------------");
 // 15. Qui sont les meilleurs en js, les filles ou les garcons ?
+const maleJsArray =arrayGlobalAverage.filter(student => student.gender === "male").reduce((average,student) =>{
+  return average + (student.js.mark * student.js.rate
+  )},0);
+const maleRateJs =arrayGlobalAverage.filter(student => student.gender === "male").reduce((average,student) =>{ 
+  return average + student.js.rate
+  },0);
+console.log('Moyenne des garcons : ')
+console.log(Math.floor(maleJsArray/maleRateJs));
+const femaleJsArray =arrayGlobalAverage.filter(student => student.gender === "female").reduce((average,student) =>{ 
+  return average + (student.js.mark * student.js.rate
+  )},0);
+const femaleRateJs =arrayGlobalAverage.filter(student => student.gender === "female").reduce((average,student) =>{
+  return average + student.js.rate
+  },0);
+console.log('Moyenne des filles : ')
+console.log(Math.floor(femaleJsArray/femaleRateJs));
 
-
-
+console.log("-----------------------------");
 // 16. Récupérer les filles des classes dw1 et dw2 et les classer dans l'ordre de leurs moyennes générales
+console.log('Classement filles moyennes générales :')
+console.log(arrayGlobalAverage.filter(student => student.gender === "female").sort((a,b) =>
+ a.personnalAverage>b.personnalAverage ? 1 : -1
+));
+
+
+
+// Exo supplementaire
+const values = [2,3,3,4,5,6,1,7,8,4,5,5,6,2,3,1,8,3,3,3,8,3,4,5,5,5,6,9,9,1,2,3,2,4,7,7,2,1,8,8,1];
+
+//À partir de ce tableau : 
+//  - Garder seulement des valeurs uniques
+//  - Trier les valeurs dans l'ordre croissant
+function uniqueVal(value, index, self){
+  return self.indexOf(value)===index;
+}
+const test = values.filter(uniqueVal);  // ES5
+console.log(test.sort());
+
+const uniqueValues = [...new Set(values)];  //ES6
+console.log(uniqueValues.sort());
