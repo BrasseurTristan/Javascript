@@ -16,53 +16,37 @@
 
 // Utilisez la méthode console.log() pour afficher le nombre de propriétés de chaque instance(l'instance de Animal et l'instance de Dog).
 
-class animal {
-
-    #name;
-    #sound;
+class Animal {
 
     constructor(name, sound){
-        this.setName(name);
-        this.setSound(sound);
+        this.name=name;
+        this.sound=sound;
     }
 
-    setName(name){
-        this.#name = name;
-    }
-
-    getName(){
-        return this.#name;
-    }
-
-    setSound(sound){
-        this.#sound = sound;
-    }
-
-    getSound(){
-        return this.#sound;
-    }
-
-    makeSound(name,sound){
-        console.log(name,sound);
+    makeSound(){
+        console.log(`l'animal est ${this.name} , et fait ${this.sound} e`);
     }
 }
 
-class dog extends animal {
 
-    #breed;
+const test = new Animal("cat","waf");
+test.makeSound();
+
+class Dog extends Animal {
 
     constructor(name, sound, breed){
-       super(name, sound, breed);
+       super(name, sound);
+       this.breed = breed;
     }
 
-    setBreed(breed){
-        this.#breed(breed);
+    bark() {
+        console.log(`l'animal est ${this.name} de race ${this.breed}, et fait ${this.sound} + waf`);
     }
-    
-    getBreed(){
-        return this.#breed;
+    makeSound(){
+        console.log(`l'animal est ${this.name} de race ${this.breed}, et fait ${this.sound}`);
     }
-
 }
-
-console.log(makeSound(car,waf));
+const dog = new Dog("Rex","Wouf","Berger Allemand");
+dog.makeSound();
+dog.bark();
+  
